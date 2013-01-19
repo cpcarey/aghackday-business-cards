@@ -1,5 +1,4 @@
-<h1>New user</h1>
-
+<!--
 <script type="text/javascript" src="http://platform.linkedin.com/in.js">
   api_key: 8z6zdjt5yetc
   authorize: true
@@ -9,6 +8,7 @@
 function onLinkedInAuth() {
     IN.API.Profile("me").result(function(me) {
         var id = me.values[0].id;
+        console.log(me);
         var field = document.getElementById('users_new_text_field_login_id');
         field.value = id;
     });
@@ -16,18 +16,16 @@ function onLinkedInAuth() {
 </script>
 
 <script type="IN/Login" data-onAuth="onLinkedInAuth"></script>
+-->
 
-<br />
-<br />
+<script type="text/javascript">
+document.body.onload = function() {
+  document.getElementById('users_new_text_field_login_id').value = 'ufR4XdCyCC';
+}
+</script>
 
-<%= form_for(User.new) do |f| %>
-  <div class="field">
-    <%= f.label :login_id %><br />
-    <%= f.text_field :login_id, :id => 'users_new_text_field_login_id' %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= form_tag do %>
+  <%= text_field_tag :login_id, nil, :id => 'users_new_text_field_login_id' %>
+  <br />
+  <%= submit_tag 'Login '%>
 <% end %>
-
-<%= link_to 'Back', users_path %>

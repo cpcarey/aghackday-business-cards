@@ -1,3 +1,3 @@
 class User < ActiveRecord::Base
-  attr_accessible :hashed_password, :id, :salt
+  attr_accessible :login_id
 end
