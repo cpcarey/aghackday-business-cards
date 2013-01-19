@@ -1,1 +1,8 @@
-<%= link_to "Sign in with LinkedIn", @authorize_url %>
+<%= link_to "Sign in with LinkedIn", @authorize_url, :class => 'card-button' %>
+
+<%= link_to "Create account with LinkedIn",
+    { 
+      :controller => "users", 
+      :action => "new"
+    },
+    :class => 'card-button' %>

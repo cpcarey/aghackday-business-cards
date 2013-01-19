@@ -15,7 +15,7 @@ document.ready = function() {
   var offsetLeft = 0;//window.screenLeft;
   
   var cardTop = 80;
-  var cardLeft = (windowWidth - cardWidth) / 2;
+  var cardLeft = (windowWidth - cardWidth);
   
   var card = document.getElementById('card');
   if (card) {
@@ -49,5 +49,14 @@ document.ready = function() {
   if (totalHeight != 0) {
     totalHeight += 40;
     document.body.style.height = totalHeight + 'px';
+  }
+  
+  var formWrapper = document.getElementById('form-wrapper');
+  if (formWrapper) {
+    formWrapper.style.position = 'relative';
+    formWrapper.style.display = 'block';
+    formWrapper.style.marginLeft = 'auto';
+    formWrapper.style.marginRight = 'auto';
+    formWrapper.style.width = '100%';
   }
 };

@@ -13,7 +13,8 @@ class AdminController < ApplicationController
     consumer_options = { 
       :site => oauth_options['api_host'],
       :authorize_path => oauth_options['authorize_path'],
-      :request_token_path => oauth_options['request_token_path'],
+      :request_token_path => oauth_options['request_token_path'] + 
+          '?scope=r_basicprofile+r_emailaddress+r_contactinfo+r_fullprofile',
       :access_token_path => oauth_options['access_token_path']
     }
     
@@ -25,17 +26,6 @@ class AdminController < ApplicationController
     request_token = AdminController.consumer.get_request_token(:oauth_callback => callback_url)
     session[:request_token] = request_token
     @authorize_url = request_token.authorize_url
-
-    if request.post?
-      login_id = params[:login_id]
-      
-      if user = User.find_by_login_id(login_id)
-        session[:user_id] = user.id
-        redirect_to(:controller => 'users', :action => 'show', :id => user.id)
-      else
-        flash.now[:notice] = 'Login failed.'
-      end
-    end
   end
   
   def login_callback

@@ -47,11 +47,7 @@
     <%= f.label :job_title %><br />
     <%= f.text_field :job_title %>
   </div>
-  <div class="field">
-    <%= f.label :logo_url %><br />
-    <%= f.text_field :logo_url %>
-  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'card-button-input', :id => 'card-button-input' %>
   </div>
 <% end %>
