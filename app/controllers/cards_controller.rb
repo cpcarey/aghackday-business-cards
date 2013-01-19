@@ -107,15 +107,15 @@ class CardsController < ApplicationController
   end
   
   def vcard
-    @info = Info.find(params[:id])
-    vcard = create_vcard(@info)
+    @card = Card.find(params[:id])
+    vcard = create_vcard(@card.info)
     
     send_data vcard, :filename => 'contact.vcf'
   end
   
   def ics
-    @info = Info.find(params[:id])
-    ics = create_ics(@info)
+    @card = Card.find(params[:id])
+    ics = create_ics(@card.info)
     
     puts ics
     
