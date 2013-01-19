@@ -3,5 +3,5 @@ linkedin:
   request_token_path: /uas/oauth/requestToken
   access_token_path: /uas/oauth/accessToken
   authorize_path: /uas/oauth/authorize
-  consumer_key: 8z6zdjt5yetc
-  consumer_secret: 2WNFjRfb4y0zFNcR
+  consumer_key: 
+  consumer_secret: 
