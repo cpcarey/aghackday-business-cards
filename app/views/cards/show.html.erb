@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<% info = @card.info %>
+
+<p>
+<%= info.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= info.last_name %>
+</p>
+
+<p>
+  <b>Organization:</b>
+  <%= info.organization %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= info.address %>
+</p>
+
+<p>
+  <b>Phone number:</b>
+  <%= info.phone_number %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= info.email %>
+</p>
+
+<p>
+  <b>Website:</b>
+  <%= info.website %>
+</p>
+
+<p>
+  <b>Job title:</b>
+  <%= info.job_title %>
+</p>
+
+<p>
+  <b>Logo url:</b>
+  <%= info.logo_url %>
+</p>
+
+<%= link_to 'Edit', edit_card_path(@card) %> |
+<%= link_to 'Back', cards_path %>

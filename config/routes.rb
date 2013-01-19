@@ -1,4 +1,10 @@
 AghackdayBusinessCards::Application.routes.draw do
+  resources :cards
+
+
+  resources :infos
+
+
   resources :users
 
 
