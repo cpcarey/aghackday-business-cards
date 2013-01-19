@@ -1,5 +1,7 @@
 class Card < ActiveRecord::Base
-  attr_accessible :theme
+  include ApplicationHelper
+  
+  attr_accessible :theme, :url
   
   has_one :info
 end

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authorize, :except => :new
+  
+  skip_before_filter :authorize, :only => ['new']
   
   # GET /users
   # GET /users.json

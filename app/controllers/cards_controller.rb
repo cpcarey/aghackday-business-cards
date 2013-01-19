@@ -1,4 +1,8 @@
 class CardsController < ApplicationController
+  include ApplicationHelper
+
+  skip_before_filter :authorize, :only => ['show', 'show_redirect']
+  
   # GET /cards
   # GET /cards.json
   def index
@@ -40,6 +44,7 @@ class CardsController < ApplicationController
   # POST /cards
   # POST /cards.json
   def create
+    params[:card][:url] = random_code
     @card = Card.new(params[:card])
     @card.info = User.find_by_id(session[:user_id]).info
 
@@ -79,6 +84,24 @@ class CardsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to cards_url }
       format.json { head :no_content }
+    end
+  end
+  
+  def qr_code
+    @card = Card.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { head :no_content }
+    end
+  end
+  
+  def show_redirect
+    @card = Card.find(params[:id])
+
+    respond_to do |format|
+      format.html { redirect_to @card }
+      format.json { render :json => @card }
     end
   end
 end
