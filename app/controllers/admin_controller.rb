@@ -41,7 +41,13 @@ class AdminController < ApplicationController
 
       if user = User.find_by_login_id(login_id)
         session[:user_id] = user.id
-        redirect_to(:controller => 'users', :action => 'show', :id => user.id)
+        
+        if card_id=session[:card_id]
+          session[:card_id] = nil
+          redirect_to(:controller => 'cards', :action => 'save_to_collection', :id => card_id)
+        else
+          redirect_to(:controller => 'users', :action => 'show', :id => user.id)
+        end
       else
         flash.now[:notice] = 'Login failed.'
       end

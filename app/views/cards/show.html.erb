@@ -25,7 +25,16 @@
       :id => @card.id 
     },
     :class => 'card-button' %>
-    
+
+<% if session[:user_id] && @card.users.include?(User.find(session[:user_id])) %>
+<%= link_to "Saved to Collection",
+    { 
+      :controller => "users", 
+      :action => "show", 
+      :id => session[:user_id]
+    },
+    :class => 'card-button' %>
+<% else %>
 <%= link_to "Save to Collection",
     { 
       :controller => "cards", 
@@ -33,6 +42,7 @@
       :id => @card.id 
     },
     :class => 'card-button' %>
+<% end %>
 
 <% if session[:user_id] %>
 <%= link_to "Back to Account",

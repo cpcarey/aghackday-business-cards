@@ -2,7 +2,7 @@ class CardsController < ApplicationController
   include ApplicationHelper
   include CardsHelper
 
-  skip_before_filter :authorize, :only => ['show', 'show_redirect', 'qr_code', 'vcard', 'ics']
+  skip_before_filter :authorize, :only => ['show', 'show_redirect', 'qr_code', 'vcard', 'ics', 'save_to_collection']
   
   # GET /cards
   # GET /cards.json
@@ -124,20 +124,28 @@ class CardsController < ApplicationController
   
   def save_to_collection
     @card = Card.find(params[:id])
-    @user = User.find_by_id(session[:user_id])
     
-    @user.cards << @card
-    @card.users << @user
-    
-    @card.save
-    
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @card, :notice => 'Card was successfully added.' }
-        format.json { head :no_content }
-      else
-        format.html { render :action => "edit" }
-        format.json { render :json => @card.errors, :status => :unprocessable_entity }
+    if not session[:user_id]
+      session[:card_id] = @card.id
+      respond_to do |format|
+        format.html { redirect_to :controller => 'admin', :action => 'login' }
+      end
+    else
+      @user = User.find_by_id(session[:user_id])
+      
+      @user.cards << @card
+      @card.users << @user
+      
+      @card.save
+      
+      respond_to do |format|
+        if @user.save
+          format.html { redirect_to @card, :notice => 'Card was successfully added.' }
+          format.json { head :no_content }
+        else
+          format.html { render :action => "edit" }
+          format.json { render :json => @card.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end

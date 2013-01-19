@@ -57,8 +57,12 @@ class UsersController < ApplicationController
 
         if @user.save
           session[:user_id] = @user.id
-          format.html { redirect_to @user, :notice => 'Great!  Now let\'s add your information' }
-          format.json { render :json => @user, :status => :created, :location => @user }
+          if card_id=session[:card_id]
+            session[:card_id] = nil
+            format.html { redirect_to :controller => 'cards', :action => 'save_to_collection', :id => card_id }
+          else
+            format.html { redirect_to @user, :notice => 'Great!  Now let\'s add your information' }
+          end
         else
           format.html { render :action => "new" }
           format.json { render :json => @user.errors, :status => :unprocessable_entity }
