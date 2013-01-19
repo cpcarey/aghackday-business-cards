@@ -34,4 +34,7 @@ AghackdayBusinessCards::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  ENV['GEM_HOME'] = "/Library/Ruby/Gems/1.8"
+  ENV['GEM_PATH'] = "/Library/Ruby/Gems/1.8"
 end

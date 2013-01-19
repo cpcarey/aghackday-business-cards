@@ -4,12 +4,13 @@ AghackdayBusinessCards::Application.routes.draw do
 
   resources :infos
 
+  get "users/new_callback"
 
   resources :users
 
 
   get "admin/login"
-
+  get "admin/login_callback"
   get "admin/logout"
   
   match '/admin/login' => 'admin#login', :via => :post
