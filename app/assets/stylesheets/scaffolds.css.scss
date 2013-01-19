@@ -1,13 +1,13 @@
 body {
   background-color: #fff;
   color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: 'Oxygen', verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
 
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: 'Oxygen', verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
@@ -66,4 +66,39 @@ div {
     font-size: 12px;
     list-style: square;
   }
+}
+
+$card-height: 900px;
+$card-width: 800px;
+
+$card-button-width: $card-width;
+$card-button-height: 100px;
+$card-button-font-height: 50px;
+$card-button-padding-top: 40px;
+
+.card-button {
+  position: relative;
+  width: $card-button-width;
+  height: $card-button-height - $card-button-padding-top;
+  background-color: white;
+  text-align: center;
+  font-size: $card-button-font-height;
+  padding-top: $card-button-padding-top;
+  font-family: 'Monda';
+  text-decoration: none;
+  margin-left: 'auto';
+  margin-right: 'auto';
+  display: 'block';
+}
+
+.card-button, .card-button:visited {
+  color: black;
+}
+
+.card-button:active {
+  color: #999;
+}
+
+body {
+  background-color: #d0d0d0;
 }

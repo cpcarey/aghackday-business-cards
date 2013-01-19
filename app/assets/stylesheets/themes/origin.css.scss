@@ -19,15 +19,19 @@ $rounded_panel_font_height: $rounded_panel_height - 20px;
   text-align: right;
 }
 
-body {
-  background-color: #d0d0d0;
-}
+$card_width: 800px;
+$card_height: 900px;
 
 #card {
   background-color: #f0f0f0;
-  position: absolute;
+  position: relative;
   font-family: 'Monda';
   font-size: 3em;
+  margin-left: 'auto';
+  margin-right: 'auto';
+  display: 'block';
+  width: $card_width;
+  height: $card_height;
 }
 
 $color_primary: #339595;
@@ -35,9 +39,6 @@ $color_secondary: #999999;
 $color_tertiary: orange;
 $color_primary_light: #C7E2E2;
 $color_secondary_light: #f9f9f9;
-
-$card_width: 800px;
-$card_height: 900px;
 
 #panel-1 {
   top: 0px;

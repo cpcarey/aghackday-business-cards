@@ -6,32 +6,10 @@
   width: 100%
 }
 
-$card-height: 900px;
-$card-width: 800px;
-
-$card-button-width: $card-width;
-$card-button-height: 100px;
-$card-button-font-height: 50px;
-$card-button-padding-top: 40px;
-
-.card-button {
-  position: absolute;
-  width: $card-button-width;
-  height: $card-button-height - $card-button-padding-top;
-  background-color: white;
+#notice {
+  color: white !important;
+  width: 100%;
   text-align: center;
-  font-size: $card-button-font-height;
-  padding-top: $card-button-padding-top;
-  font-family: 'Monda';
-  text-decoration: none;
-}
-
-.card-button, .card-button:visited {
-  color: black;
-}
-
-.card-button:active {
-  color: #999;
 }
 
 #card-button-qr-code {

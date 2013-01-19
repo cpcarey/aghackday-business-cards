@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130119071710) do
+ActiveRecord::Schema.define(:version => 20130119180117) do
 
   create_table "cards", :force => true do |t|
     t.string   "theme"
@@ -18,6 +18,14 @@ ActiveRecord::Schema.define(:version => 20130119071710) do
     t.datetime "updated_at", :null => false
     t.string   "url"
   end
+
+  create_table "cards_users", :id => false, :force => true do |t|
+    t.integer "card_id"
+    t.integer "user_id"
+  end
+
+  add_index "cards_users", ["card_id", "user_id"], :name => "index_cards_users_on_card_id_and_user_id"
+  add_index "cards_users", ["user_id", "card_id"], :name => "index_cards_users_on_user_id_and_card_id"
 
   create_table "infos", :force => true do |t|
     t.string   "first_name"
@@ -57,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20130119071710) do
     t.string   "login_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "card_id"
   end
 
 end

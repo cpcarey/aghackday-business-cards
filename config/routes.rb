@@ -1,4 +1,7 @@
 AghackdayBusinessCards::Application.routes.draw do
+  
+  get "cards/save_to_collection"
+  
   resources :cards
 
 

@@ -121,4 +121,24 @@ class CardsController < ApplicationController
     
     send_data ics, :filename => 'contact.ics'
   end
+  
+  def save_to_collection
+    @card = Card.find(params[:id])
+    @user = User.find_by_id(session[:user_id])
+    
+    @user.cards << @card
+    @card.users << @user
+    
+    @card.save
+    
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to @card, :notice => 'Card was successfully added.' }
+        format.json { head :no_content }
+      else
+        format.html { render :action => "edit" }
+        format.json { render :json => @card.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
 end

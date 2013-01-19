@@ -1,13 +1,50 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Login:</b>
-  <%= @user.login_id %>
+  <% if @user.info.first_name %>
+    <div id="user-show-name">
+      <%= @user.info.first_name %> <%= @user.info.last_name %>
+    </div>
+  <% end %>
   
-  <b>Info</b>
-  <%= @user.info %>
+  <% if card=@user.info.card %>
+    <div class="user-show-title">
+      My Card
+    </div>
+    
+    <%= link_to(card) do %>
+      <%= render :partial => 'cards/card', :locals => { :card => card } %>
+    <% end %>
+
+  <% else %>
+    <% if card=@user.info %>  
+      <%= link_to 'Add My Info', { 
+          :controller => "infos", 
+          :action => "new" 
+        }, 
+        :class => 'card-button' %>
+    <% else %>
+      <%= link_to 'Create My Card', { 
+          :controller => "cards", 
+          :action => "new" 
+        }, 
+        :class => 'card-button' %>
+    <% end %>
+  <% end %>
+  
+  <div class="user-show-title" id="user-show-others">
+    Cards From Others
+  </div>
+  
+  <% @user.cards.each do |card| %>
+    <%= link_to(card) do %>
+      <div class="user-card">
+        <%= render :partial => 'cards/card', :locals => { :card => card } %>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <div id="user-footer">
+    
+  </div>
 </p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

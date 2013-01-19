@@ -11,13 +11,18 @@ document.ready = function() {
   var windowWidth = simWidth;//window.innerWidth;
   var windowHeight = simHeight;//window.innerHeight;
   
-  var cardTop = (windowHeight - cardHeight) / 2;
+  var offsetTop = 0;//window.screenTop;
+  var offsetLeft = 0;//window.screenLeft;
+  
+  var cardTop = 80;
   var cardLeft = (windowWidth - cardWidth) / 2;
   
   var card = document.getElementById('card');
   if (card) {
-    card.style.top = cardTop + 'px';
-    card.style.left = cardLeft + 'px';
+    card.style.marginTop = cardTop + 'px';
+    card.style.marginLeft = 'auto';
+    card.style.marginRight = 'auto';
+    card.style.display = 'block';
     card.style.width = cardWidth + 'px';
     card.style.height = cardHeight + 'px';
     totalHeight += cardTop + cardHeight;
@@ -32,8 +37,10 @@ document.ready = function() {
   for (var i = 0; i < cardButtons.length; i++) {
     var left = (windowWidth - cardWidth) / 2;
 
-    cardButtons[i].style.top = cardButtonTop + 'px';
-    cardButtons[i].style.left = left + 'px';
+    cardButtons[i].style.marginTop = (i == 0) ? '80px' : '40px';
+    cardButtons[i].style.marginLeft = 'auto';
+    cardButtons[i].style.marginRight = 'auto';
+    cardButtons[i].style.display = 'block';
     
     cardButtonTop += (cardButtonHeight + cardButtonSpacing);
     totalHeight += (cardButtonHeight + cardButtonSpacing);
