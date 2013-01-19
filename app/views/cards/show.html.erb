@@ -1,50 +1,55 @@
-<p id="notice"><%= notice %></p>
-
 <% info = @card.info %>
+<% stylesheet_link_tag '/stylesheets/themes/origin.css' %>
+<% javascript_include_tag '/javascripts/themes/theme.js' %>
+<link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
 
-<p>
-<%= info.first_name %>
-</p>
-
-<p>
-  <b>Last name:</b>
-  <%= info.last_name %>
-</p>
-
-<p>
-  <b>Organization:</b>
-  <%= info.organization %>
-</p>
-
-<p>
-  <b>Address:</b>
-  <%= info.address %>
-</p>
-
-<p>
-  <b>Phone number:</b>
-  <%= info.phone_number %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= info.email %>
-</p>
-
-<p>
-  <b>Website:</b>
-  <%= info.website %>
-</p>
-
-<p>
-  <b>Job title:</b>
-  <%= info.job_title %>
-</p>
-
-<p>
-  <b>Logo url:</b>
-  <%= info.logo_url %>
-</p>
-
-<%= link_to 'Edit', edit_card_path(@card) %> |
-<%= link_to 'Back', cards_path %>
+<div class="mobile" id="card">
+  <div id="name-div">
+    <div id="name-span">
+      <%= info.first_name %> <%= info.last_name %> 
+    </div>
+  </div>
+  
+  <div id="organization-div">
+    <div id="organization-span">
+      <%= info.organization %>
+    </div>
+  </div>
+  
+  <div id="address-div">
+    <div id="address-span">
+      <%= info.address_line_1 %><br />
+      <%= info.address_line_2 %>
+    </div>
+  </div>
+  
+  <div id="phone-number-div">
+    <div id="phone-number-span">
+      <%= info.phone_number %>
+    </div>
+  </div>
+  
+  <div id="email-div">
+    <div id="email-span">
+      <%= info.email %>
+    </div>
+  </div>
+  
+  <div id="website-div">
+    <div id="website-span">
+      <%= info.website %>
+    </div>
+  </div>
+  
+  <div id="job-title-div">
+    <div id="job-title-span">
+      <%= info.job_title %>
+    </div>
+  </div>
+  
+  <div id="panel-1">
+  </div>
+  
+  <div id="panel-2">
+  </div>
+</div>

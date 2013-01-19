@@ -1,0 +1,155 @@
+@mixin panel {
+  position: absolute;
+  color: red;
+  line-height: 1.0em; 
+}
+
+$rounded_panel_padding_right: 40px;
+$rounded_panel_height: 60px;
+$rounded_panel_font_height: $rounded_panel_height - 20px;
+
+@mixin rounded_panel {
+  // border-top-left-radius: 40px;
+  // border-bottom-left-radius: 40px;
+  height: $rounded_panel_height;
+  padding-right: $rounded_panel_padding_right;
+  padding-top: ($rounded_panel_height - $rounded_panel_font_height) / 2 + 2;
+  background-color: $color_primary_light;
+  color: $color_primary;
+  text-align: right;
+}
+
+body {
+  background-color: #d0d0d0;
+}
+
+#card {
+  background-color: #f0f0f0;
+  position: absolute;
+  font-family: 'Monda';
+  font-size: 3em;
+}
+
+$color_primary: #339595;
+$color_secondary: #999999;
+$color_tertiary: orange;
+$color_primary_light: #C7E2E2;
+$color_secondary_light: #f9f9f9;
+
+$card_width: 800px;
+$card_height: 900px;
+
+#panel-1 {
+  top: 0px;
+  left: 0px;
+  width: $card_width;
+  height: 300px;
+  border-bottom: 20px solid white;
+  background-color: $color_primary;
+}
+
+$name_top: 40px;
+$name_height: 100px;
+$name_padding_left: 35px;
+$name_font_height: $name_height - 10px;
+
+#name-div {
+  @include panel;
+  top: $name_top;
+  width: $card_width - $name_padding_left;
+  height: $name_height;
+  font-size: $name_font_height;
+  color: white;
+  padding-left: $name_padding_left;
+  padding-top: ($name_height - $name_font_height) / 2;
+  text-transform: uppercase;
+}
+
+$organization_top: $name_top + $name_height + 10px;
+$organization_height: 45px;
+$organization_font_height: $organization_height - 10px;
+$organization_padding_left: 42px;
+
+#organization-div {
+  @include panel;
+  top: $organization_top;
+  width: $card_width - $organization_padding_left;
+  height: $organization_height;
+  padding-left: $organization_padding_left;
+  color: white;
+  font-size: $organization_font_height;
+  padding-top: ($organization_height - $organization_font_height) / 2 + 2;
+}
+
+$job_title_top: $organization_top + $organization_height + 10px;
+$job_title_height: 40px;
+$job_title_font_height: $job_title_height - 10px;
+$job_title_padding_left: 42px;
+
+#job-title-div {
+  @include panel;
+  @include panel;
+  top: $job_title_top;
+  width: $card_width - $job_title_padding_left;
+  height: $job_title_height;
+  padding-left: $job_title_padding_left;
+  color: white;
+  font-size: $job_title_font_height;
+  padding-top: ($job_title_height - $job_title_font_height) / 2 + 2;
+}
+
+$address_top: 340px;
+$address_padding_left: 40px;
+$address_height: 140px;
+$address_font_height: ($address_height / 2) - 20px;
+$address_width: 760px;
+
+#address-div {
+  @include panel;
+  top: $address_top;
+  width: $address_width - $address_padding_left;
+  height: $address_height;
+  padding-left: $address_padding_left;
+  padding-top: ($address_height - $address_font_height) / 2 + 2;
+  // background-color: $color_secondary_light;
+  color: $color_secondary;
+}
+
+$website_top: $address_top + $address_height + 120px;
+$website_width: $card_width - 450px;
+
+#website-div {
+  @include panel;
+  @include rounded_panel;
+  top: $website_top;
+  left: $card_width - $website_width - $rounded_panel_padding_right;
+  width: $website_width;
+}
+
+$phone_number_top: $website_top + $rounded_panel_height + 30px;
+$phone_number_width: $card_width - 300px;
+$phone_number_padding_right: 40px;
+$phone_number_height: 60px;
+$phone_number_font_height: $phone_number_height - 20px;
+
+#phone-number-div {
+  @include panel;
+  @include rounded_panel;
+  top: $phone_number_top;
+  left: $card_width - $phone_number_width - $rounded_panel_padding_right;
+  width: $phone_number_width;
+}
+
+$email_top: $phone_number_top + $rounded_panel_height + 30px;
+$email_width: $card_width - 150px;
+$email_padding_right: 40px;
+$email_height: 60px;
+$email_font_height: $email_height - 20px;
+
+#email-div {
+  @include panel;
+  @include rounded_panel;
+  top: $email_top;
+  left: $card_width - $email_width - $rounded_panel_padding_right;
+  width: $email_width;
+}
