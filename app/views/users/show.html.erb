@@ -46,6 +46,13 @@
   
     <div id="user-footer">
   <% end %>
+  
+  <%= link_to "Logout",
+    { 
+      :controller => "admin", 
+      :action => "logout" 
+    },
+    :class => 'card-button card-button-last' %>
     
   </div>
 </p>

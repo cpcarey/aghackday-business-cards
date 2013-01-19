@@ -8,7 +8,6 @@
       :action => "qr_code", 
       :id => @card.id
     },
-    :id => 'card-button-qr-code',
     :class => 'card-button' %>
     
 <%= link_to "Save to Contacts (iOS)", 
@@ -17,7 +16,6 @@
       :action => "ics", 
       :id => @card.id
     },  
-    :id => 'card-button-contacts-save-ios',
     :class => 'card-button' %>
 
 <%= link_to "Save to Contacts (Android)",
@@ -26,7 +24,6 @@
       :action => "vcard", 
       :id => @card.id 
     },
-    :id => 'card-button-contacts-save-android',
     :class => 'card-button' %>
     
 <%= link_to "Save to Collection",
@@ -35,5 +32,21 @@
       :action => "save_to_collection", 
       :id => @card.id 
     },
-    :id => 'card-button-contacts-save-to_collection',
     :class => 'card-button' %>
+
+<% if session[:user_id] %>
+<%= link_to "Back to Account",
+    { 
+      :controller => "users", 
+      :action => "show", 
+      :id => session[:user_id] 
+    },
+    :class => 'card-button card-button-last' %>
+<% else %>
+<%= link_to "Login or Sign-up",
+    { 
+      :controller => "admin", 
+      :action => "login"
+    },
+    :class => 'card-button card-button-last' %>
+<% end %>

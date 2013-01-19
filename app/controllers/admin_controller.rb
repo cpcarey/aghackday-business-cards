@@ -49,5 +49,7 @@ class AdminController < ApplicationController
   end
 
   def logout
+    session[:user_id] = nil
+    redirect_to(:controller => 'admin', :action => 'login')
   end
 end

@@ -47,16 +47,7 @@ document.ready = function() {
   }
   
   if (totalHeight != 0) {
-    totalHeight += 40;
+    totalHeight += 80;
     document.body.style.height = totalHeight + 'px';
-  }
-  
-  var formWrapper = document.getElementById('form-wrapper');
-  if (formWrapper) {
-    formWrapper.style.position = 'relative';
-    formWrapper.style.display = 'block';
-    formWrapper.style.marginLeft = 'auto';
-    formWrapper.style.marginRight = 'auto';
-    formWrapper.style.width = '100%';
   }
 };
