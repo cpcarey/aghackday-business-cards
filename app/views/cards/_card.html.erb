@@ -2,8 +2,8 @@
 <% stylesheet_link_tag '/stylesheets/themes/origin.css' %>
 <% javascript_include_tag '/javascripts/themes/theme.js' %>
 
-<div>
-<div class="mobile" id="card">
+<div class="theme-<%= card.theme || 'origin' %>">
+<div id="card">
   <div id="name-div">
     <div id="name-span">
       <%= info.first_name %> <%= info.last_name %> 

@@ -133,18 +133,24 @@ class CardsController < ApplicationController
     else
       @user = User.find_by_id(session[:user_id])
       
-      @user.cards << @card
-      @card.users << @user
-      
-      @card.save
-      
-      respond_to do |format|
-        if @user.save
-          format.html { redirect_to @card, :notice => 'Card was successfully added.' }
-          format.json { head :no_content }
-        else
-          format.html { render :action => "edit" }
-          format.json { render :json => @card.errors, :status => :unprocessable_entity }
+      if @card.users.include?(@user)
+        respond_to do |format|
+          format.html { redirect_to @card, :notice => 'Card already in collection.' }
+        end
+      else
+        @user.cards << @card
+        @card.users << @user
+        
+        @card.save
+        
+        respond_to do |format|
+          if @user.save
+            format.html { redirect_to @card, :notice => 'Card was successfully added.' }
+            format.json { head :no_content }
+          else
+            format.html { render :action => "edit" }
+            format.json { render :json => @card.errors, :status => :unprocessable_entity }
+          end
         end
       end
     end
