@@ -1,29 +1,43 @@
 <h1>New user</h1>
 
-<script type="text/javascript" src="http://platform.linkedin.com/in.js">
-  api_key: 8z6zdjt5yetc
-  authorize: true
-</script>
- 
+<script type="text/javascript" src="http://platform.linkedin.com/in.js?async=true"></script>
 <script type="text/javascript">
-function onLinkedInAuth() {
-    IN.API.Profile("me").result(function(me) {
-        var id = me.values[0].id;
-        var field = document.getElementById('users_new_text_field_login_id');
-        field.value = id;
+    IN.init({
+        onLoad: 'requestFields',
+        api_key: '8z6zdjt5yetc',
+        scope: 'r_basicprofile r_emailaddress r_contactinfo r_fullprofile',
+        authorize: true
     });
-}
+    
+    function login(result) {
+        var id = result.values[0].id;
+        var field = document.getElementById('users-new-text-field-login-id');
+        var form = document.getElementById('users-new-form');
+        
+        console.log(form, field);
+        
+        if (form && field) {
+            field.value = id;
+            // form.submit();
+        }
+    }
+    
+    function requestFields() {
+        IN.User.authorize(onAuthorized);
+    }
+    
+    function onAuthorized() {
+        IN.API.Profile("me").fields("id").result(login);
+    }
 </script>
 
-<script type="IN/Login" data-onAuth="onLinkedInAuth"></script>
-
 <br />
 <br />
 
-<%= form_for(User.new) do |f| %>
+<%= form_for User.new, :html => { :id => 'users-new-form' } do |f| %>
   <div class="field">
     <%= f.label :login_id %><br />
-    <%= f.text_field :login_id, :id => 'users_new_text_field_login_id' %>
+    <%= f.text_field :login_id, :id => 'users-new-text-field-login-id' %>
   </div>
   <div class="actions">
     <%= f.submit %>

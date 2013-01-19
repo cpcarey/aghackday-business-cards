@@ -1,5 +1,93 @@
 <h1>New info</h1>
 
+<script type="text/javascript" src="http://platform.linkedin.com/in.js?async=true"></script>
+<script type="text/javascript">
+    IN.init({ 
+        onLoad: 'requestFields',
+        api_key: '8z6zdjt5yetc',
+        scope: 'r_basicprofile r_emailaddress r_contactinfo r_fullprofile',
+        authorize: true
+    });
+    
+    function fillFields(result) {
+        console.log(result);
+      
+        var firstName = result.values[0].firstName;
+        var lastName = result.values[0].lastName;
+        var email = result.values[0].emailAddress;
+        
+        // Assuming a maximum of one line break in the address field.
+        var address = result.values[0].mainAddress;
+        var addressLine1 = "";
+        var addressLine2 = "";
+        var addressSplit = address.split("\n");
+        addressLine1 = addressSplit[0];
+        if (addressSplit.length > 1) {
+            addressLine2 = addressSplit[1];
+        }
+        
+        // Pull the first phone number, if available, regardless of type.
+        var phoneNumber = "";
+        if (result.values[0].phoneNumbers._total > 0) {
+            phoneNumber = result.values[0].phoneNumbers.values[0].phoneNumber;
+        }
+        
+        // Pull the first provided website, if available.
+        var website = "";
+        if (result.values[0].memberUrlResources._total > 0) {
+            website = result.values[0].memberUrlResources.values[0].url;
+            
+            // Remove http.
+            website = website.replace("http://", "");
+        }
+        
+        var firstNameElement = document.getElementById('infos_text_field_first_name');
+        var lastNameElement = document.getElementById('infos_text_field_last_name');
+        var addressLine1Element = document.getElementById('infos_text_field_address_line_1');
+        var addressLine2Element = document.getElementById('infos_text_field_address_line_2');
+        var phoneNumberElement = document.getElementById('infos_text_field_phone_number');
+        var emailElement = document.getElementById('infos_text_field_email');
+        var websiteElement = document.getElementById('infos_text_field_website');
+        
+        if (firstName && firstNameElement) {
+            firstNameElement.value = firstName;
+        }
+        
+        if (lastName && lastNameElement) {
+            lastNameElement.value = lastName;
+        }
+        
+        if (addressLine1 && addressLine1Element) {
+            addressLine1Element.value = addressLine1;
+        }
+        
+        if (addressLine2 && addressLine2Element) {
+            addressLine2Element.value = addressLine2;
+        }
+        
+        if (phoneNumber && phoneNumberElement) {
+            phoneNumberElement.value = phoneNumber;
+        }
+        
+        if (email && emailElement) {
+            emailElement.value = email;
+        }
+        
+        if (website && websiteElement) {
+            websiteElement.value = website;
+        }
+    }
+    
+    function requestFields() {
+        IN.User.authorize(onAuthorized);
+    }
+    
+    function onAuthorized() {
+        IN.API.Profile("me").fields("firstName", "lastName", "emailAddress", "phoneNumbers", 
+            "mainAddress", "memberUrlResources").result(fillFields);
+    }
+</script>
+
 <%= render 'form' %>
 
 <%= link_to 'Back', infos_path %>
