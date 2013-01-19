@@ -1,7 +1,8 @@
 class CardsController < ApplicationController
   include ApplicationHelper
+  include CardsHelper
 
-  skip_before_filter :authorize, :only => ['show', 'show_redirect']
+  skip_before_filter :authorize, :only => ['show', 'show_redirect', 'qr_code', 'vcard', 'ics']
   
   # GET /cards
   # GET /cards.json
@@ -103,5 +104,21 @@ class CardsController < ApplicationController
       format.html { redirect_to @card }
       format.json { render :json => @card }
     end
+  end
+  
+  def vcard
+    @info = Info.find(params[:id])
+    vcard = create_vcard(@info)
+    
+    send_data vcard, :filename => 'contact.vcf'
+  end
+  
+  def ics
+    @info = Info.find(params[:id])
+    ics = create_ics(@info)
+    
+    puts ics
+    
+    send_data ics, :filename => 'contact.ics'
   end
 end

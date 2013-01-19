@@ -73,5 +73,8 @@ AghackdayBusinessCards::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
   
   match '/cards/:id/qr_code', :controller => 'cards', :action => 'qr_code'
+  match '/cards/:id/vcard', :controller => 'cards', :action => 'vcard'
+  match '/cards/:id/ics', :controller => 'cards', :action => 'ics'
+  
   match '/:url/:id', :controller => 'cards', :action => 'show_redirect'
 end

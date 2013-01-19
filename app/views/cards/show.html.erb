@@ -54,4 +54,29 @@
   </div>
 </div>
 
-<%= link_to "QR Code", :controller => "cards", :action => "qr_code", :id => @card.id %>
+<%= link_to "QR Code",
+    { 
+      :controller => "cards", 
+      :action => "qr_code", 
+      :id => @card.id
+    },
+    :id => 'card-button-qr-code',
+    :class => 'card-button' %>
+    
+<%= link_to "Save to Contacts (iOS)", 
+    { 
+      :controller => "cards", 
+      :action => "ics", 
+      :id => @card.id
+    },  
+    :id => 'card-button-contacts-save-ios',
+    :class => 'card-button' %>
+
+<%= link_to "Save to Contacts (Android)",
+    { 
+      :controller => "cards", 
+      :action => "vcard", 
+      :id => @card.id 
+    },
+    :id => 'card-button-contacts-save-android',
+    :class => 'card-button' %>
